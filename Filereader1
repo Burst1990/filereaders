@@ -1,0 +1,55 @@
+package newProject;
+
+import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+
+public class NumberFile {
+public static void main(String[] args) throws IOException {
+	    File nameFile = new File ("numbers.txt"); 
+		Scanner IntFileScanner = null;
+		PrintWriter FileOut = null;
+		int total = 0;
+		int n = 0;
+		
+		 try {
+	            IntFileScanner = new Scanner(nameFile);
+	            FileOut = new PrintWriter (new BufferedWriter (new FileWriter("file1.txt")));
+	            while (IntFileScanner.hasNext()) {
+	            	if(IntFileScanner.hasNextInt()) {
+	            		n = IntFileScanner.nextInt();
+	            		System.out.println(n);
+	            		total += n;
+	            	}
+           	     	else {
+	            		FileOut.println(IntFileScanner.next());
+	                }
+	            }       
+           
+         
+	        }
+	    catch (FileNotFoundException ex) {
+	            System.err.println(nameFile.getName() + "No File Found");
+	        }
+		catch (Exception ex) {
+		 		System.err.println("An Error has occured");
+		 	}
+		 
+		 finally {
+			if (IntFileScanner !=null) {
+				IntFileScanner.close();	
+			}
+			if (FileOut !=null) {
+				FileOut.close();
+			}
+			if(total !=0) {
+	        System.out.println("total: " + total);
+	        }
+		 }
+	}
+}
+
